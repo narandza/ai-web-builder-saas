@@ -1,22 +1,15 @@
-"use client";
+import { caller, getQueryClient, trpc } from "@/trpc/server";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { Client } from "./client";
 
-import { useTRPC } from "@/trpc/client";
-import { useQuery } from "@tanstack/react-query";
-
-const Page = () => {
-  const trpc = useTRPC();
-
-  const { data } = useQuery(
-    trpc.hello.queryOptions({
-      text: "Bob!",
-    })
-  );
+const Page = async () => {
+  const queryClient = getQueryClient();
+  void queryClient.prefetchQuery(trpc.hello.queryOptions({ text: "test" }));
 
   return (
-    <div className="">
-      Hello world!
-      <div className="">{JSON.stringify(data)}</div>
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Client />
+    </HydrationBoundary>
   );
 };
 
