@@ -1,6 +1,7 @@
 import { Sandbox } from "@e2b/code-interpreter";
-import { inngest } from "./client";
 import { createAgent, openai } from "@inngest/agent-kit";
+
+import { inngest } from "./client";
 import { getSandbox } from "./utils";
 
 export const helloWorld = inngest.createFunction(
