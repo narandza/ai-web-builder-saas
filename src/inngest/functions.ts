@@ -1,6 +1,7 @@
 import { Sandbox } from "@e2b/code-interpreter";
 import { inngest } from "./client";
 import { createAgent, openai } from "@inngest/agent-kit";
+import { getSandbox } from "./utils";
 
 export const helloWorld = inngest.createFunction(
   { id: "code-agent" },
@@ -18,5 +19,19 @@ export const helloWorld = inngest.createFunction(
         "You are an expert. next.js developer. You write readable, maintainable code. You write simple Next.js & React snippets",
       model: openai({ model: "gpt-4o" }),
     });
+
+    const { output } = await codeAgent.run(
+      `Write the following snippet: ${event.data.value}`
+    );
+
+    const sandboxUrl = await step.run("get-sandbox-url", async () => {
+      const sandbox = await getSandbox(sandboxId);
+
+      const host = sandbox.getHost(3000);
+
+      return `https://${host}`;
+    });
+
+    return { output, sandboxUrl };
   }
 );
