@@ -2,7 +2,7 @@ import { Sandbox } from "@e2b/code-interpreter";
 import { createAgent, createTool, openai } from "@inngest/agent-kit";
 
 import { inngest } from "./client";
-import { getSandbox } from "./utils";
+import { getSandbox, lastAssistantTextMessageContent } from "./utils";
 import z from "zod";
 import { PROMPT } from "@/prompt";
 
@@ -119,6 +119,21 @@ export const helloWorld = inngest.createFunction(
           },
         }),
       ],
+
+      lifecycle: {
+        onResponse: async ({ result, network }) => {
+          const lastAssistantMessageText =
+            lastAssistantTextMessageContent(result);
+
+          if (lastAssistantMessageText && network) {
+            if (lastAssistantMessageText.includes("<task_summary>")) {
+              network.state.data.summary = lastAssistantMessageText;
+            }
+          }
+
+          return result;
+        },
+      },
     });
 
     const { output } = await codeAgent.run(
