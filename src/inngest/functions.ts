@@ -4,6 +4,7 @@ import { createAgent, createTool, openai } from "@inngest/agent-kit";
 import { inngest } from "./client";
 import { getSandbox } from "./utils";
 import z from "zod";
+import { PROMPT } from "@/prompt";
 
 export const helloWorld = inngest.createFunction(
   { id: "code-agent" },
@@ -17,9 +18,12 @@ export const helloWorld = inngest.createFunction(
 
     const codeAgent = createAgent({
       name: "code-agent",
-      system:
-        "You are an expert. next.js developer. You write readable, maintainable code. You write simple Next.js & React snippets",
-      model: openai({ model: "gpt-4o" }),
+      description: "An expert coding agent.",
+      system: PROMPT,
+      model: openai({
+        model: "gpt-4.1",
+        defaultParameters: { temperature: 0.1 },
+      }),
       tools: [
         createTool({
           name: "terminal",
