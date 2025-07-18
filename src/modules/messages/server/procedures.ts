@@ -1,7 +1,8 @@
-import { inngest } from "@/inngest/client";
-import { prisma } from "@/lib/db";
-import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import z from "zod";
+
+import { prisma } from "@/lib/db";
+import { inngest } from "@/inngest/client";
+import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 
 export const messagesRouter = createTRPCRouter({
   create: baseProcedure
