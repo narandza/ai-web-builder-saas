@@ -2,7 +2,7 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { useTRPC } from "@/trpc/client";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,8 @@ const Page = () => {
   const [value, setValue] = useState("");
 
   const trpc = useTRPC();
+
+  const { data: messages } = useQuery(trpc.messages.getMany.queryOptions());
   const createMessage = useMutation(
     trpc.messages.create.mutationOptions({
       onSuccess: () => {
@@ -25,6 +27,8 @@ const Page = () => {
       <Button onClick={() => createMessage.mutate({ value: value })}>
         Invoke background job
       </Button>
+
+      {JSON.stringify(messages, null, 2)}
     </div>
   );
 };
