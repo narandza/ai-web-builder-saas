@@ -12,9 +12,9 @@ import z from "zod";
 import { PROMPT } from "@/prompt";
 import { prisma } from "@/lib/db";
 
-export const helloWorld = inngest.createFunction(
+export const codeAgent = inngest.createFunction(
   { id: "code-agent" },
-  { event: "test/hello.world" },
+  { event: "code-agent/run" },
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create("vibe-next-js-devmitrije010");
