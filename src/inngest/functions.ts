@@ -1,4 +1,4 @@
-import { Sandbox } from "@e2b/code-interpreter";
+import z from "zod";
 import {
   createAgent,
   createNetwork,
@@ -6,10 +6,11 @@ import {
   openai,
   type Tool,
 } from "@inngest/agent-kit";
+import { Sandbox } from "@e2b/code-interpreter";
 
 import { inngest } from "./client";
 import { getSandbox, lastAssistantTextMessageContent } from "./utils";
-import z from "zod";
+
 import { PROMPT } from "@/prompt";
 import { prisma } from "@/lib/db";
 
