@@ -1,9 +1,9 @@
 import z from "zod";
+import { generateSlug } from "random-word-slugs";
 
 import { prisma } from "@/lib/db";
 import { inngest } from "@/inngest/client";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
-import { generateSlug } from "random-word-slugs";
 
 export const projectsRouter = createTRPCRouter({
   getMany: baseProcedure.query(async () => {

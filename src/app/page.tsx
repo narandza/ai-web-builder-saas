@@ -2,12 +2,12 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 
 import { useTRPC } from "@/trpc/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/router";
 
 const Page = () => {
   const router = useRouter();
