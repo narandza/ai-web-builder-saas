@@ -2,7 +2,7 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { useTRPC } from "@/trpc/client";
 import { Input } from "@/components/ui/input";
@@ -13,22 +13,24 @@ const Page = () => {
 
   const trpc = useTRPC();
 
-  const { data: messages } = useQuery(trpc.messages.getMany.queryOptions());
-  const createMessage = useMutation(
-    trpc.messages.create.mutationOptions({
-      onSuccess: () => {
-        toast.success("Message created");
+  const createProject = useMutation(
+    trpc.projects.create.mutationOptions({
+      onError: (error) => {
+        toast.error(error.message);
       },
     })
   );
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <Input value={value} onChange={(e) => setValue(e.target.value)} />
-      <Button onClick={() => createMessage.mutate({ value: value })}>
-        Invoke background job
-      </Button>
-
-      {JSON.stringify(messages, null, 2)}
+    <div className="h-screen w-screen flex items-center justify-center">
+      <div className="max-w-7xl mx-auto items-center flex flex-col gap-y-4 justify-center">
+        <Input value={value} onChange={(e) => setValue(e.target.value)} />
+        <Button
+          disabled={createProject.isPending}
+          onClick={() => createProject.mutate({ value: value })}
+        >
+          Submit
+        </Button>
+      </div>
     </div>
   );
 };
