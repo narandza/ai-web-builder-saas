@@ -7,8 +7,10 @@ import { useMutation } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/router";
 
 const Page = () => {
+  const router = useRouter();
   const [value, setValue] = useState("");
 
   const trpc = useTRPC();
@@ -17,6 +19,9 @@ const Page = () => {
     trpc.projects.create.mutationOptions({
       onError: (error) => {
         toast.error(error.message);
+      },
+      onSuccess: (data) => {
+        router.push(`/projects/${data.id}`);
       },
     })
   );
