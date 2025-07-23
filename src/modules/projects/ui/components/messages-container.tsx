@@ -19,7 +19,7 @@ export const MessagesContainer = ({ projectId }: Props) => {
       <div className="flex-1 min-h-0 overflow-y-auto">
         <div className="pt-2 pr-1">
           {messages.map((message) => (
-            <MessageCardComponent key={message.id} />
+            // <MessageCardComponent key={message.id} content={message.content} role={message.role} fragment={message.fragment} />
           ))}
         </div>
       </div>
