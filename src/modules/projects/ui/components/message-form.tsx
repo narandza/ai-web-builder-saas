@@ -6,7 +6,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "@/components/ui/button";
-import { ArrowUpIcon } from "lucide-react";
+import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
 
@@ -36,10 +36,13 @@ export const MessageForm = ({ projectId }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
   const showUsage = false;
   const isPending = createMessage.isPending;
-  const isDisabled = isPending || !form.formState.isValid;
+  const isButtonDisabled = isPending || !form.formState.isValid;
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    await createMessage.mutateAsync({
+      value: values.value,
+      projectId,
+    });
   };
 
   return (
@@ -57,6 +60,7 @@ export const MessageForm = ({ projectId }: Props) => {
           name="value"
           render={({ field }) => (
             <TextareaAutosize
+              disabled={isPending}
               {...field}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
@@ -81,8 +85,18 @@ export const MessageForm = ({ projectId }: Props) => {
             </kbd>
             &nbsp;to submit
           </div>
-          <Button className={cn("size-8 rounded-full")} disabled={isDisabled}>
-            <ArrowUpIcon />
+          <Button
+            className={cn(
+              "size-8 rounded-full",
+              isButtonDisabled && "bg-muted-foreground border"
+            )}
+            disabled={isButtonDisabled}
+          >
+            {isPending ? (
+              <Loader2Icon className="size-4 animate-spin" />
+            ) : (
+              <ArrowUpIcon />
+            )}
           </Button>
         </div>
       </form>
