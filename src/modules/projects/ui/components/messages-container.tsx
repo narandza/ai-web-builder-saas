@@ -28,12 +28,12 @@ export const MessagesContainer = ({
   );
 
   useEffect(() => {
-    const lastAssistantMessage = messages.findLast(
-      (message) => message.role === "ASSISTANT"
+    const lastAssistantMessageWithFragment = messages.findLast(
+      (message) => message.role === "ASSISTANT" && !!message.fragment
     );
 
-    if (lastAssistantMessage) {
-      setActiveFragment(lastAssistantMessage.fragment);
+    if (lastAssistantMessageWithFragment) {
+      setActiveFragment(lastAssistantMessageWithFragment.fragment);
     }
   }, [messages, setActiveFragment]);
 
