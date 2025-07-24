@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 import {
@@ -11,17 +11,14 @@ import {
 import { useTRPC } from "@/trpc/client";
 
 import { MessagesContainer } from "../components/messages-container";
+import { Fragment } from "@/generated/prisma";
 
 interface Props {
   projectId: string;
 }
 
 export const ProjectView = ({ projectId }: Props) => {
-  const trpc = useTRPC();
-
-  const { data: project } = useSuspenseQuery(
-    trpc.projects.getOne.queryOptions({ id: projectId })
-  );
+  const [activeFragment, setActiveFragment] = useState<Fragment | null>(null);
 
   return (
     <div className="h-screen">
@@ -32,7 +29,11 @@ export const ProjectView = ({ projectId }: Props) => {
           className="flex flex-col min-h-0"
         >
           <Suspense fallback={<p>Loading messages...</p>}>
-            <MessagesContainer projectId={projectId} />
+            <MessagesContainer
+              projectId={projectId}
+              activeFragment={activeFragment}
+              setActiveFragment={setActiveFragment}
+            />
           </Suspense>
         </ResizablePanel>
         <ResizableHandle withHandle />

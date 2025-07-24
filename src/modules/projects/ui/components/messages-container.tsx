@@ -7,12 +7,19 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { MessageCard } from "./message-card";
 import { MessageForm } from "./message-form";
+import { Fragment } from "@/generated/prisma";
 
 interface Props {
   projectId: string;
+  activeFragment: Fragment | null;
+  setActiveFragment: (fragment: Fragment | null) => void;
 }
 
-export const MessagesContainer = ({ projectId }: Props) => {
+export const MessagesContainer = ({
+  projectId,
+  activeFragment,
+  setActiveFragment,
+}: Props) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const trpc = useTRPC();
 
@@ -26,9 +33,9 @@ export const MessagesContainer = ({ projectId }: Props) => {
     );
 
     if (lastAssistantMessage) {
-      // TODO SET ACTIVE FRAGMENT
+      setActiveFragment(lastAssistantMessage.fragment);
     }
-  }, [messages]);
+  }, [messages, setActiveFragment]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView();
