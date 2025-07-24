@@ -81,7 +81,7 @@ export const MessageForm = ({ projectId }: Props) => {
             </kbd>
             &nbsp;to submit
           </div>
-          <Button className={cn("size-8 rounded-full")}>
+          <Button className={cn("size-8 rounded-full")} disabled={isDisabled}>
             <ArrowUpIcon />
           </Button>
         </div>
