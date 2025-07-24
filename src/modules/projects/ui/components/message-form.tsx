@@ -5,6 +5,10 @@ import { Form, FormField } from "@/components/ui/form";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import TextareaAutosize from "react-textarea-autosize";
+import { Button } from "@/components/ui/button";
+import { ArrowUpIcon } from "lucide-react";
+import { useTRPC } from "@/trpc/client";
+import { useMutation } from "@tanstack/react-query";
 
 interface Props {
   projectId: string;
@@ -18,9 +22,9 @@ const formSchema = z.object({
 });
 
 export const MessageForm = ({ projectId }: Props) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const trpc = useTRPC();
 
-  const showUsage = false;
+  const createMessage = useMutation(trpc.messages.create.mutationOptions());
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -28,6 +32,11 @@ export const MessageForm = ({ projectId }: Props) => {
       value: "",
     },
   });
+
+  const [isFocused, setIsFocused] = useState(false);
+  const showUsage = false;
+  const isPending = createMessage.isPending;
+  const isDisabled = isPending || !form.formState.isValid;
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
@@ -64,6 +73,18 @@ export const MessageForm = ({ projectId }: Props) => {
             />
           )}
         />
+
+        <div className="flex gap-x-2 items-end justify-between pt-2">
+          <div className="text-[10px] text-muted-foreground font-mono">
+            <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+              <span className="">&#8984;</span>Enter
+            </kbd>
+            &nbsp;to submit
+          </div>
+          <Button className={cn("size-8 rounded-full")}>
+            <ArrowUpIcon />
+          </Button>
+        </div>
       </form>
     </Form>
   );
