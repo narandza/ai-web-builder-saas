@@ -8,7 +8,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "@/components/ui/button";
 import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { useTRPC } from "@/trpc/client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 interface Props {
   projectId: string;
@@ -23,8 +24,27 @@ const formSchema = z.object({
 
 export const MessageForm = ({ projectId }: Props) => {
   const trpc = useTRPC();
+  const queryClient = useQueryClient();
 
-  const createMessage = useMutation(trpc.messages.create.mutationOptions());
+  const createMessage = useMutation(
+    trpc.messages.create.mutationOptions({
+      onSuccess: () => {
+        form.reset();
+        queryClient.invalidateQueries(
+          trpc.messages.getMany.queryOptions({
+            projectId,
+          })
+        );
+
+        // TODO: Invalidate useage status
+      },
+      onError: (error) => {
+        toast.error(error.message);
+
+        // TODO: redirect to pricing page if specific error
+      },
+    })
+  );
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
