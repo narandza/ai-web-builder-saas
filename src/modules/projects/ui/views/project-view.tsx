@@ -1,14 +1,16 @@
 "use client";
 
+import { Suspense } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { useTRPC } from "@/trpc/client";
-import { useSuspenseQuery } from "@tanstack/react-query";
+
 import { MessagesContainer } from "../components/messages-container";
-import { Suspense } from "react";
 
 interface Props {
   projectId: string;
