@@ -34,6 +34,7 @@ export const ProjectView = ({ projectId }: Props) => {
               activeFragment={activeFragment}
               setActiveFragment={setActiveFragment}
             />
+            test
           </Suspense>
         </ResizablePanel>
         <ResizableHandle withHandle />
