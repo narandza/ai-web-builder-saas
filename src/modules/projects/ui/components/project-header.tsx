@@ -15,6 +15,7 @@ import {
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ChevronDownIcon, ChevronLeftIcon, SunMoonIcon } from "lucide-react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,6 +29,8 @@ export const ProjectHeader = ({ projectId }: Props) => {
   const { data: project } = useSuspenseQuery(
     trpc.projects.getOne.queryOptions({ id: projectId })
   );
+
+  const { setTheme, theme } = useTheme();
 
   return (
     <header className="p-2 flex justify-between items-center border-b">
@@ -58,7 +61,7 @@ export const ProjectHeader = ({ projectId }: Props) => {
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuRadioGroup value="light" onValueChange={() => {}}>
+                <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
                   <DropdownMenuRadioItem value="light">
                     <span className="">Light</span>
                   </DropdownMenuRadioItem>
