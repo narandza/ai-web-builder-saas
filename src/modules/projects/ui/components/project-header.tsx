@@ -3,11 +3,18 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ChevronDownIcon, ChevronLeftIcon } from "lucide-react";
+import { ChevronDownIcon, ChevronLeftIcon, SunMoonIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -43,6 +50,28 @@ export const ProjectHeader = ({ projectId }: Props) => {
               <span className="">Go to Dashboard</span>
             </Link>
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger className="gap-2">
+              <SunMoonIcon className="size-4 text-muted-foreground" />
+              <span className="">Appearance</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                <DropdownMenuRadioGroup value="light" onValueChange={() => {}}>
+                  <DropdownMenuRadioItem value="light">
+                    <span className="">Light</span>
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="dark">
+                    <span className="">Dark</span>
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="system">
+                    <span className="">System</span>
+                  </DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
