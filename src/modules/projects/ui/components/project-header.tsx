@@ -1,12 +1,15 @@
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronDownIcon, ChevronLeftIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   projectId: string;
@@ -33,6 +36,14 @@ export const ProjectHeader = ({ projectId }: Props) => {
             <ChevronDownIcon />
           </Button>
         </DropdownMenuTrigger>
+        <DropdownMenuContent side="bottom" align="start">
+          <DropdownMenuItem asChild>
+            <Link href="/">
+              <ChevronLeftIcon />
+              <span className="">Go to Dashboard</span>
+            </Link>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
       </DropdownMenu>
     </header>
   );
