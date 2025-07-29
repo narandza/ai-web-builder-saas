@@ -27,14 +27,15 @@ export const ProjectView = ({ projectId }: Props) => {
           minSize={20}
           className="flex flex-col min-h-0"
         >
-          <ProjectHeader projectId={projectId} />
+          <Suspense fallback={<p>TODO: add loading...</p>}>
+            <ProjectHeader projectId={projectId} />
+          </Suspense>
           <Suspense fallback={<p>Loading messages...</p>}>
             <MessagesContainer
               projectId={projectId}
               activeFragment={activeFragment}
               setActiveFragment={setActiveFragment}
             />
-            test
           </Suspense>
         </ResizablePanel>
         <ResizableHandle withHandle />
