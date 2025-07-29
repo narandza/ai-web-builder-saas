@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const ShimmerMessages = () => {
   const messages = [
@@ -22,6 +23,14 @@ const ShimmerMessages = () => {
 
     return () => clearInterval(interval);
   }, [messages.length]);
+
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-base text-muted-foreground animate-pulse">
+        {messages[currentMessageIndex]}
+      </span>
+    </div>
+  );
 };
 
 export const MessageLoading = () => {
