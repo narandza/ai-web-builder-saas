@@ -3,11 +3,11 @@
 import { useEffect, useRef } from "react";
 
 import { useTRPC } from "@/trpc/client";
+import { Fragment } from "@/generated/prisma";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { MessageCard } from "./message-card";
 import { MessageForm } from "./message-form";
-import { Fragment } from "@/generated/prisma";
 import { MessageLoading } from "./message-loading";
 
 interface Props {

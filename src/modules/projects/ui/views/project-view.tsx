@@ -7,9 +7,9 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { Fragment } from "@/generated/prisma";
 
 import { MessagesContainer } from "../components/messages-container";
-import { Fragment } from "@/generated/prisma";
 import { ProjectHeader } from "../components/project-header";
 
 interface Props {

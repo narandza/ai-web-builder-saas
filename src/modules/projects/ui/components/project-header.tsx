@@ -1,4 +1,9 @@
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { ChevronDownIcon, ChevronLeftIcon, SunMoonIcon } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,11 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTRPC } from "@/trpc/client";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { ChevronDownIcon, ChevronLeftIcon, SunMoonIcon } from "lucide-react";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   projectId: string;
