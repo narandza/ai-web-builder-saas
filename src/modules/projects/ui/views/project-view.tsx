@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/resizable";
 import { Fragment } from "@/generated/prisma";
 
-import { MessagesContainer } from "../components/messages-container";
-import { ProjectHeader } from "../components/project-header";
 import { FragmentWeb } from "../components/fragment-web";
+import { ProjectHeader } from "../components/project-header";
+import { MessagesContainer } from "../components/messages-container";
 
 interface Props {
   projectId: string;
