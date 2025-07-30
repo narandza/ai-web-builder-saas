@@ -16,6 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CodeIcon, CrownIcon, EyeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { FileExplorer } from "@/components/file-explorer";
 
 interface Props {
   projectId: string;
@@ -73,7 +74,11 @@ export const ProjectView = ({ projectId }: Props) => {
               {!!activeFragment && <FragmentWeb data={activeFragment} />}
             </TabsContent>
             <TabsContent value="code">
-              <p>TODO: CODE</p>
+              {!!activeFragment?.files && (
+                <FileExplorer
+                  files={activeFragment.files as { [path: string]: string }}
+                />
+              )}
             </TabsContent>
           </Tabs>
         </ResizablePanel>
