@@ -1,4 +1,12 @@
 import { TreeItem } from "@/types";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarProvider,
+} from "./ui/sidebar";
 
 interface TreeViewProps {
   data: TreeItem[];
@@ -7,5 +15,17 @@ interface TreeViewProps {
 }
 
 export const TreeView = ({ data, value, onSelect }: TreeViewProps) => {
-  return <p>{JSON.stringify(data)}</p>;
+  return (
+    <SidebarProvider>
+      <Sidebar collapsible="none" className="w-full">
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu></SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+    </SidebarProvider>
+  );
 };
