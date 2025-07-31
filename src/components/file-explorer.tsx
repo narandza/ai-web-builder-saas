@@ -29,7 +29,7 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
   return (
     <ResizablePanelGroup direction="horizontal">
       <ResizablePanel defaultSize={30} minSize={30} className="bg-sidebar">
-        <p className="">TODO: tree view</p>
+        <TreeView data={[]} value={selectedFile} onSelect={() => {}} />
       </ResizablePanel>
       <ResizableHandle className="hover:bg-primary transition-colors" />
       <ResizablePanel defaultSize={70} minSize={50} className="bg-sidebar">
