@@ -6,9 +6,16 @@ import {
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
   SidebarProvider,
 } from "./ui/sidebar";
-import { FileIcon } from "lucide-react";
+import { ChevronRightIcon, FileIcon, FolderIcon } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible";
 
 interface TreeViewProps {
   data: TreeItem[];
@@ -59,5 +66,35 @@ const Tree = ({ item, selectedValue, onSelect, parentPath }: TreeProps) => {
       </SidebarMenuButton>
     );
   }
-  // TODO: Build when it's a folder
+
+  // It's a folder
+  return (
+    <SidebarMenuItem>
+      <Collapsible
+        className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+        defaultOpen
+      >
+        <CollapsibleTrigger asChild>
+          <SidebarMenuButton>
+            <ChevronRightIcon className="transition-transform" />
+            <FolderIcon />
+            <span className="truncate">{name}</span>
+          </SidebarMenuButton>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <SidebarMenuSub>
+            {items.map((subItem, index) => (
+              <Tree
+                key={index}
+                item={subItem}
+                selectedValue={selectedValue}
+                onSelect={onSelect}
+                parentPath={currentPath}
+              />
+            ))}
+          </SidebarMenuSub>
+        </CollapsibleContent>
+      </Collapsible>
+    </SidebarMenuItem>
+  );
 };
