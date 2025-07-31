@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { CopyIcon } from "lucide-react";
 import { CodeView } from "./code-view";
 import { ConvertFilesToTreeItems } from "@/lib/utils";
+import { TreeView } from "./tree-view";
 
 type FileCollection = { [path: string]: string };
 
