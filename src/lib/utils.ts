@@ -31,7 +31,7 @@ export function ConvertFilesToTreeItems(files: {
     const parts = filePath.split("/");
     let current = tree;
 
-    for (let i = 0; parts.length - 1; i++) {
+    for (let i = 0; i < parts.length - 1; i++) {
       const part = parts[i];
       if (!current[part]) {
         current[part] = {};
