@@ -9,6 +9,7 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarProvider,
+  SidebarRail,
 } from "./ui/sidebar";
 import { ChevronRightIcon, FileIcon, FolderIcon } from "lucide-react";
 import {
@@ -30,10 +31,21 @@ export const TreeView = ({ data, value, onSelect }: TreeViewProps) => {
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupContent>
-              <SidebarMenu></SidebarMenu>
+              <SidebarMenu>
+                {data.map((item, index) => (
+                  <Tree
+                    key={index}
+                    item={item}
+                    selectedValue={value}
+                    onSelect={onSelect}
+                    parentPath=""
+                  />
+                ))}
+              </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
+        <SidebarRail />
       </Sidebar>
     </SidebarProvider>
   );
