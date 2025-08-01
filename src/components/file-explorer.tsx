@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { Fragment, useCallback, useMemo, useState } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -10,6 +10,12 @@ import { CopyIcon } from "lucide-react";
 import { CodeView } from "./code-view";
 import { ConvertFilesToTreeItems } from "@/lib/utils";
 import { TreeView } from "./tree-view";
+import {
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./ui/breadcrumb";
 
 type FileCollection = { [path: string]: string };
 
@@ -18,6 +24,60 @@ function getLanguageFromExtension(filename: string): string {
 
   return extension || "text";
 }
+
+interface FileBreadcrumbProps {
+  filePath: string;
+}
+
+const FileBreadcrumb = ({ filePath }: FileBreadcrumbProps) => {
+  const pathSegments = filePath.split("/");
+  const maxSegments = 4;
+
+  const renderBreadcrumbItems = () => {
+    if (pathSegments.length <= maxSegments) {
+      // Show all segment if 4 or less
+      return pathSegments.map((segment, index) => {
+        const isLast = index === pathSegments.length - 1;
+
+        return (
+          <Fragment key={index}>
+            <BreadcrumbItem>
+              {isLast ? (
+                <BreadcrumbPage className="font-medium">
+                  {segment}
+                </BreadcrumbPage>
+              ) : (
+                <span className="text-muted-foreground">{segment}</span>
+              )}
+            </BreadcrumbItem>
+            {!isLast && <BreadcrumbSeparator />}
+          </Fragment>
+        );
+      });
+    } else {
+      const firstSegment = pathSegments[0];
+      const lastSegment = pathSegments[pathSegments.length - 1];
+
+      return (
+        <>
+          <BreadcrumbItem>
+            <span className="text-muted-foreground">{firstSegment}</span>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbEllipsis />
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="font-medium">
+                {lastSegment}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbItem>
+        </>
+      );
+    }
+  };
+};
 
 interface FileExplorerProps {
   files: FileCollection;
