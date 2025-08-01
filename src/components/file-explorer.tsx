@@ -11,8 +11,10 @@ import { CodeView } from "./code-view";
 import { ConvertFilesToTreeItems } from "@/lib/utils";
 import { TreeView } from "./tree-view";
 import {
+  Breadcrumb,
   BreadcrumbEllipsis,
   BreadcrumbItem,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./ui/breadcrumb";
@@ -77,6 +79,12 @@ const FileBreadcrumb = ({ filePath }: FileBreadcrumbProps) => {
       );
     }
   };
+
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>{renderBreadcrumbItems()}</BreadcrumbList>
+    </Breadcrumb>
+  );
 };
 
 interface FileExplorerProps {
@@ -116,7 +124,7 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
         {selectedFile && files[selectedFile] ? (
           <div className="h-full w-full flex flex-col">
             <div className="border-b bg-sidebar px-4 py-2 flex justify-between items-center gap-x-2">
-              {/* TODO: File breadcrumb */}
+              <FileBreadcrumb filePath={selectedFile} />
               <Hint text="Copy to clipboard" side="bottom">
                 <Button
                   variant="outline"
