@@ -6,7 +6,7 @@ import {
 } from "./ui/resizable";
 import { Hint } from "./hint";
 import { Button } from "./ui/button";
-import { CopyIcon } from "lucide-react";
+import { CopyCheckIcon, CopyIcon } from "lucide-react";
 import { CodeView } from "./code-view";
 import { ConvertFilesToTreeItems } from "@/lib/utils";
 import { TreeView } from "./tree-view";
@@ -92,6 +92,7 @@ interface FileExplorerProps {
 }
 
 export const FileExplorer = ({ files }: FileExplorerProps) => {
+  const [copied, setCopied] = useState(false);
   const [selectedFile, setSelectedFile] = useState<string | null>(() => {
     const fileKeys = Object.keys(files);
     return fileKeys.length > 0 ? fileKeys[0] : null;
@@ -109,6 +110,17 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
     },
     [files]
   );
+
+  const handleCopy = useCallback(() => {
+    if (selectedFile) {
+      navigator.clipboard.writeText(files[selectedFile]);
+
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    }
+  }, [selectedFile, files]);
 
   return (
     <ResizablePanelGroup direction="horizontal">
@@ -130,10 +142,10 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
                   variant="outline"
                   size="icon"
                   className="ml-auto"
-                  onClick={() => {}}
+                  onClick={handleCopy}
                   disabled={false}
                 >
-                  <CopyIcon />
+                  {copied ? <CopyCheckIcon /> : <CopyIcon />}
                 </Button>
               </Hint>
             </div>
