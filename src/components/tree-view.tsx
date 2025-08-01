@@ -1,4 +1,7 @@
+import { ChevronRightIcon, FileIcon, FolderIcon } from "lucide-react";
+
 import { TreeItem } from "@/types";
+
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +14,6 @@ import {
   SidebarProvider,
   SidebarRail,
 } from "./ui/sidebar";
-import { ChevronRightIcon, FileIcon, FolderIcon } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,

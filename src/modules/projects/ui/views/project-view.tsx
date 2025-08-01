@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { Suspense, useState } from "react";
+import { CodeIcon, CrownIcon, EyeIcon } from "lucide-react";
 
 import {
   ResizableHandle,
@@ -9,14 +11,12 @@ import {
 } from "@/components/ui/resizable";
 import { Fragment } from "@/generated/prisma";
 
+import { Button } from "@/components/ui/button";
 import { FragmentWeb } from "../components/fragment-web";
+import { FileExplorer } from "@/components/file-explorer";
 import { ProjectHeader } from "../components/project-header";
 import { MessagesContainer } from "../components/messages-container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CodeIcon, CrownIcon, EyeIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { FileExplorer } from "@/components/file-explorer";
 
 interface Props {
   projectId: string;

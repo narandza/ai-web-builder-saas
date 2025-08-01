@@ -1,15 +1,13 @@
+import { CopyCheckIcon, CopyIcon } from "lucide-react";
 import { Fragment, useCallback, useMemo, useState } from "react";
+
+import { ConvertFilesToTreeItems } from "@/lib/utils";
+
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "./ui/resizable";
-import { Hint } from "./hint";
-import { Button } from "./ui/button";
-import { CopyCheckIcon, CopyIcon } from "lucide-react";
-import { CodeView } from "./code-view";
-import { ConvertFilesToTreeItems } from "@/lib/utils";
-import { TreeView } from "./tree-view";
 import {
   Breadcrumb,
   BreadcrumbEllipsis,
@@ -18,6 +16,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./ui/breadcrumb";
+import { Hint } from "./hint";
+import { Button } from "./ui/button";
+import { CodeView } from "./code-view";
+import { TreeView } from "./tree-view";
 
 type FileCollection = { [path: string]: string };
 
