@@ -1,3 +1,4 @@
+import { ProjectForm } from "@/modules/home/ui/components/project-form";
 import Image from "next/image";
 
 const Page = () => {
@@ -20,7 +21,7 @@ const Page = () => {
           Create apps and websites by chatting with AI{" "}
         </p>
         <div className="max-w-3xl mx-auto w-full">
-          {/* TODO Project form */}
+          <ProjectForm />
         </div>
       </section>
     </div>
