@@ -1,5 +1,6 @@
-import { ProjectForm } from "@/modules/home/ui/components/project-form";
 import Image from "next/image";
+
+import { ProjectForm } from "@/modules/home/ui/components/project-form";
 
 const Page = () => {
   return (
