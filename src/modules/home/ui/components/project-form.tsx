@@ -60,6 +60,14 @@ export const ProjectForm = () => {
     });
   };
 
+  const onSelect = (content: string) => {
+    form.setValue("value", content, {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
+    });
+  };
+
   return (
     <Form {...form}>
       <section className="space-y-6">
@@ -123,7 +131,7 @@ export const ProjectForm = () => {
               variant="outline"
               size="sm"
               className="bg-white dark:bg-sidebar"
-              onClick={() => {}}
+              onClick={() => onSelect(template.prompt)}
             >
               {template.emoji} {template.title}
             </Button>
