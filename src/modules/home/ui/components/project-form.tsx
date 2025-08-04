@@ -11,6 +11,7 @@ import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   value: z
@@ -20,14 +21,15 @@ const formSchema = z.object({
 });
 
 export const ProjectForm = () => {
+  const router = useRouter();
   const trpc = useTRPC();
   const queryClient = useQueryClient();
 
   const createProject = useMutation(
     trpc.projects.create.mutationOptions({
-      onSuccess: () => {
+      onSuccess: (data) => {
         queryClient.invalidateQueries(trpc.projects.getMany.queryOptions());
-
+        router.push(`/project/${data.id}`);
         // TODO: Invalidate useage status
       },
       onError: (error) => {
@@ -46,14 +48,12 @@ export const ProjectForm = () => {
   });
 
   const [isFocused, setIsFocused] = useState(false);
-  const showUsage = false;
-  const isPending = createMessage.isPending;
+  const isPending = createProject.isPending;
   const isButtonDisabled = isPending || !form.formState.isValid;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    await createMessage.mutateAsync({
+    await createProject.mutateAsync({
       value: values.value,
-      projectId,
     });
   };
 
@@ -63,8 +63,7 @@ export const ProjectForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
           "relative border p-4 pt-1 rounded-xl bg-sidebar dark:bg-sidebar transition-all",
-          isFocused && "shadow-xs",
-          showUsage && "rounded-t-none"
+          isFocused && "shadow-xs"
         )}
       >
         <FormField
