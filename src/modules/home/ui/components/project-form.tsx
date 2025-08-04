@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
+import { PROJECT_TEMPLATES } from "@/app/(home)/constants";
 
 const formSchema = z.object({
   value: z
@@ -113,7 +114,19 @@ export const ProjectForm = () => {
           </Button>
         </div>
       </form>
-      <div className="flex-wrap justify-center gap-2 hidden md:flex max-w-3xl"></div>
+      <div className="flex-wrap justify-center gap-2 hidden md:flex max-w-3xl">
+        {PROJECT_TEMPLATES.map((template) => (
+          <Button
+            key={template.title}
+            variant="outline"
+            size="sm"
+            className="bg-white dark:bg-sidebar"
+            onClick={() => {}}
+          >
+            {template.emoji} {template.title}
+          </Button>
+        ))}
+      </div>
     </Form>
   );
 };
