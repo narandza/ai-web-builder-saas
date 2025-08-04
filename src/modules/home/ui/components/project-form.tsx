@@ -4,6 +4,7 @@ import z from "zod";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import TextareaAutosize from "react-textarea-autosize";
 import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -13,7 +14,6 @@ import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
 import { PROJECT_TEMPLATES } from "@/app/(home)/constants";
 
 const formSchema = z.object({

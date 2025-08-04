@@ -1,11 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useTRPC } from "@/trpc/client";
-import { useQuery } from "@tanstack/react-query";
-import { formatDistanceToNow } from "date-fns";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { formatDistanceToNow } from "date-fns";
+
+import { useTRPC } from "@/trpc/client";
+import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
 
 export const ProjectsList = () => {
   const trpc = useTRPC();
