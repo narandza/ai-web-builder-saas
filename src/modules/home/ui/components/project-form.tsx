@@ -1,3 +1,5 @@
+"use client";
+
 import z from "zod";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -29,7 +31,7 @@ export const ProjectForm = () => {
     trpc.projects.create.mutationOptions({
       onSuccess: (data) => {
         queryClient.invalidateQueries(trpc.projects.getMany.queryOptions());
-        router.push(`/project/${data.id}`);
+        router.push(`/projects/${data.id}`);
         // TODO: Invalidate useage status
       },
       onError: (error) => {
@@ -111,6 +113,7 @@ export const ProjectForm = () => {
           </Button>
         </div>
       </form>
+      <div className="flex-wrap justify-center gap-2 hidden md:flex max-w-3xl"></div>
     </Form>
   );
 };
