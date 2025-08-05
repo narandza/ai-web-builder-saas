@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +13,18 @@ export const Navbar = () => {
           <Image src="/logo.svg" alt="Vibe" width={24} height={24} />
           <span className="font-semibold text-lg">Vibe</span>
         </Link>
+        <SignedOut>
+          <div className="flex gap-2">
+            <SignUpButton>
+              <Button variant="outline" size="sm">
+                Sign Up
+              </Button>
+            </SignUpButton>
+            <SignInButton>
+              <Button size="sm">Sign In</Button>
+            </SignInButton>
+          </div>
+        </SignedOut>
       </div>
     </nav>
   );
