@@ -1,8 +1,9 @@
 "use client";
 
-import { useCurrentTheme } from "@/hooks/use-current-theme";
-import { UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { UserButton } from "@clerk/nextjs";
+
+import { useCurrentTheme } from "@/hooks/use-current-theme";
 
 interface Props {
   showName?: boolean;

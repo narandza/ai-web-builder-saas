@@ -1,8 +1,9 @@
 "use client";
 
-import { SignUp } from "@clerk/nextjs";
-import { useCurrentTheme } from "@/hooks/use-current-theme";
 import { dark } from "@clerk/themes";
+import { SignUp } from "@clerk/nextjs";
+
+import { useCurrentTheme } from "@/hooks/use-current-theme";
 
 const Page = () => {
   const currentTheme = useCurrentTheme();

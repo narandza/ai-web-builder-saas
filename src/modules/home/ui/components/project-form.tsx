@@ -3,6 +3,7 @@
 import z from "zod";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useClerk } from "@clerk/nextjs";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import TextareaAutosize from "react-textarea-autosize";
@@ -15,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
 import { PROJECT_TEMPLATES } from "@/app/(home)/constants";
-import { useClerk } from "@clerk/nextjs";
 
 const formSchema = z.object({
   value: z

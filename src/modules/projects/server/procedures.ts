@@ -1,10 +1,10 @@
 import z from "zod";
+import { TRPCError } from "@trpc/server";
 import { generateSlug } from "random-word-slugs";
 
 import { prisma } from "@/lib/db";
 import { inngest } from "@/inngest/client";
 import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
-import { TRPCError } from "@trpc/server";
 
 export const projectsRouter = createTRPCRouter({
   getOne: protectedProcedure
