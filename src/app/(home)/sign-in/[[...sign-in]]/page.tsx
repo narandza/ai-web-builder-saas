@@ -14,6 +14,9 @@ const Page = () => {
           <SignIn
             appearance={{
               baseTheme: currentTheme === "dark" ? dark : undefined,
+              elements: {
+                cardBox: "border! shadow-none! rounded-lg!",
+              },
             }}
           />
         </div>
