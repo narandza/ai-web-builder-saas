@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
 import { PROJECT_TEMPLATES } from "@/app/(home)/constants";
+import { useClerk } from "@clerk/nextjs";
 
 const formSchema = z.object({
   value: z
@@ -26,6 +27,7 @@ const formSchema = z.object({
 export const ProjectForm = () => {
   const router = useRouter();
   const trpc = useTRPC();
+  const clerk = useClerk();
   const queryClient = useQueryClient();
 
   const createProject = useMutation(
@@ -37,7 +39,9 @@ export const ProjectForm = () => {
       },
       onError: (error) => {
         toast.error(error.message);
-
+        if (error.data?.code === "UNAUTHORIZED") {
+          clerk.openSignIn();
+        }
         // TODO: redirect to pricing page if specific error
       },
     })
