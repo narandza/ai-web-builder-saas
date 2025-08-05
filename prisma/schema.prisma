@@ -40,9 +40,9 @@ model Message {
   role    MessageRole
   type    MessageType
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  // TODO: fix project capitalization - npx prisma migrate reset - npx prisma migrate dev
   fragment  Fragment?
   Project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId String
