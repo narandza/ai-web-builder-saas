@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
 import { Suspense, useState } from "react";
 import { CodeIcon, CrownIcon, EyeIcon } from "lucide-react";
 
@@ -10,15 +11,14 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { Fragment } from "@/generated/prisma";
-
 import { Button } from "@/components/ui/button";
 import { UserControl } from "@/components/user-control";
-import { FragmentWeb } from "../components/fragment-web";
 import { FileExplorer } from "@/components/file-explorer";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { FragmentWeb } from "../components/fragment-web";
 import { ProjectHeader } from "../components/project-header";
 import { MessagesContainer } from "../components/messages-container";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useAuth } from "@clerk/nextjs";
 
 interface Props {
   projectId: string;

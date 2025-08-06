@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { useAuth } from "@clerk/nextjs";
-import { formatDuration, intervalToDuration } from "date-fns";
-import { CrownIcon } from "lucide-react";
 import Link from "next/link";
+import { CrownIcon } from "lucide-react";
+import { formatDuration, intervalToDuration } from "date-fns";
+
+import { useAuth } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   points: number;

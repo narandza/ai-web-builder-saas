@@ -4,9 +4,9 @@ import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import "./globals.css";
-
 import { TRPCReactProvider } from "@/trpc/client";
+
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

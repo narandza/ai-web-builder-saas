@@ -4,8 +4,8 @@ import { generateSlug } from "random-word-slugs";
 
 import { prisma } from "@/lib/db";
 import { inngest } from "@/inngest/client";
-import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 import { consumeCredits } from "@/lib/usage";
+import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 
 export const projectsRouter = createTRPCRouter({
   getOne: protectedProcedure

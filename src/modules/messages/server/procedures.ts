@@ -4,8 +4,8 @@ import { TRPCError } from "@trpc/server";
 
 import { prisma } from "@/lib/db";
 import { inngest } from "@/inngest/client";
-import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 import { consumeCredits } from "@/lib/usage";
+import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 
 export const messagesRouter = createTRPCRouter({
   getMany: protectedProcedure
