@@ -30,3 +30,17 @@ export async function consumeCredits() {
 
   return result;
 }
+
+export async function getUsageStatus() {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
+
+  const usageTracker = await getUsageTracker();
+
+  const result = await usageTracker.get(userId);
+
+  return result;
+}
