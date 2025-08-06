@@ -69,7 +69,7 @@ export const messagesRouter = createTRPCRouter({
         } else {
           throw new TRPCError({
             code: "TOO_MANY_REQUESTS",
-            message: "You have run out of credit",
+            message: "You have run out of credits",
           });
         }
       }

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
 import { Usage } from "./usage";
+import { useRouter } from "next/navigation";
 
 interface Props {
   projectId: string;
@@ -26,6 +27,7 @@ const formSchema = z.object({
 
 export const MessageForm = ({ projectId }: Props) => {
   const trpc = useTRPC();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const { data: usage } = useQuery(trpc.usage.status.queryOptions());
@@ -40,12 +42,14 @@ export const MessageForm = ({ projectId }: Props) => {
           })
         );
 
-        // TODO: Invalidate useage status
+        queryClient.invalidateQueries(trpc.usage.status.queryOptions());
       },
       onError: (error) => {
         toast.error(error.message);
 
-        // TODO: redirect to pricing page if specific error
+        if (error.data?.code === "TOO_MANY_REQUESTS") {
+          router.push("/pricing");
+        }
       },
     })
   );
