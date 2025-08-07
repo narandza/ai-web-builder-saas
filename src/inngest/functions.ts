@@ -19,6 +19,7 @@ import { inngest } from "./client";
 
 import { prisma } from "@/lib/db";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
+import { SANDBOX_TIMEOUT } from "./constants";
 
 interface AgentState {
   summary: string;
@@ -33,7 +34,7 @@ export const codeAgentFunction = inngest.createFunction(
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create("vibe-next-js-devmitrije010");
-
+      await sandbox.setTimeout(SANDBOX_TIMEOUT);
       return sandbox.sandboxId;
     });
 
