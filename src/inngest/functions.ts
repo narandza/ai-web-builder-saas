@@ -10,15 +10,15 @@ import {
 } from "@inngest/agent-kit";
 import { Sandbox } from "@e2b/code-interpreter";
 
-import { inngest } from "./client";
 import {
   getSandbox,
   lastAssistantTextMessageContent,
   parseAgentOutput,
 } from "./utils";
+import { inngest } from "./client";
 
-import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
 import { prisma } from "@/lib/db";
+import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
 
 interface AgentState {
   summary: string;
@@ -219,7 +219,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A fragment title generator",
       system: FRAGMENT_TITLE_PROMPT,
       model: openai({
-        model: "gpt-4o",
+        model: "gpt-3.5-turbo",
       }),
     });
 
@@ -228,7 +228,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A response generator",
       system: RESPONSE_PROMPT,
       model: openai({
-        model: "gpt-4o",
+        model: "gpt-3.5-turbo",
       }),
     });
 
