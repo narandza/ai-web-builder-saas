@@ -16,7 +16,7 @@ import {
   parseAgentOutput,
 } from "./utils";
 import { inngest } from "./client";
-import { SANDBOX_TIMEOUT } from "./constants";
+import { MAX_ITERATION_LIMIT, SANDBOX_TIMEOUT } from "./constants";
 
 import { prisma } from "@/lib/db";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
@@ -201,7 +201,7 @@ export const codeAgentFunction = inngest.createFunction(
     const network = createNetwork<AgentState>({
       name: "coding-agent-network",
       agents: [codeAgent],
-      maxIter: 15, // TODO: Make a const
+      maxIter: MAX_ITERATION_LIMIT,
       defaultState: state,
       router: async ({ network }) => {
         const summary = network.state.data.summary;
