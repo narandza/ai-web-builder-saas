@@ -236,26 +236,30 @@ export const codeAgentFunction = inngest.createFunction(
     );
 
     const generateFragmentTitle = () => {
-      if (fragmentTitleOutput[0].type !== "text") {
+      const output = fragmentTitleOutput[0];
+
+      if (output.type !== "text") {
         return "Fragment";
       }
 
-      if (Array.isArray(fragmentTitleOutput[0].content)) {
-        return fragmentTitleOutput[0].content.map((txt) => txt).join("");
+      if (Array.isArray(output.content)) {
+        return output.content.map((txt) => txt).join("");
       } else {
-        return fragmentTitleOutput[0].content;
+        return output.content;
       }
     };
 
     const generateResponse = () => {
-      if (responseOutput[0].type !== "text") {
+      const output = responseOutput[0];
+
+      if (output.type !== "text") {
         return "Here you go";
       }
 
-      if (Array.isArray(responseOutput[0].content)) {
-        return responseOutput[0].content.map((txt) => txt).join("");
+      if (Array.isArray(output.content)) {
+        return output.content.map((txt) => txt).join("");
       } else {
-        return responseOutput[0].content;
+        return output.content;
       }
     };
 
