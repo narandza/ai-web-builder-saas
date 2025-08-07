@@ -1,10 +1,10 @@
 import Link from "next/link";
+import { useMemo } from "react";
 import { CrownIcon } from "lucide-react";
 import { formatDuration, intervalToDuration } from "date-fns";
 
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { useMemo } from "react";
 
 interface Props {
   points: number;

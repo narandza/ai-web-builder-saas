@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
 import { Suspense, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { CodeIcon, CrownIcon, EyeIcon } from "lucide-react";
 
 import {
@@ -10,6 +11,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import ErrorPage from "@/app/error";
 import { Fragment } from "@/generated/prisma";
 import { Button } from "@/components/ui/button";
 import { UserControl } from "@/components/user-control";
@@ -19,8 +21,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FragmentWeb } from "../components/fragment-web";
 import { ProjectHeader } from "../components/project-header";
 import { MessagesContainer } from "../components/messages-container";
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorPage from "@/app/error";
 
 interface Props {
   projectId: string;

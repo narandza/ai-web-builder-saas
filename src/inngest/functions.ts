@@ -16,10 +16,10 @@ import {
   parseAgentOutput,
 } from "./utils";
 import { inngest } from "./client";
+import { SANDBOX_TIMEOUT } from "./constants";
 
 import { prisma } from "@/lib/db";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
-import { SANDBOX_TIMEOUT } from "./constants";
 
 interface AgentState {
   summary: string;

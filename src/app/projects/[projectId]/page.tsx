@@ -1,10 +1,10 @@
 import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
+import ErrorPage from "@/app/error";
 import { ProjectView } from "@/modules/projects/ui/views/project-view";
 import { getQueryClient, trpc } from "@/trpc/server";
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorPage from "@/app/error";
 
 interface Props {
   params: Promise<{
