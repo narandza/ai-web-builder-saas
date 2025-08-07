@@ -20,6 +20,7 @@ import { FragmentWeb } from "../components/fragment-web";
 import { ProjectHeader } from "../components/project-header";
 import { MessagesContainer } from "../components/messages-container";
 import { ErrorBoundary } from "react-error-boundary";
+import ErrorPage from "@/app/error";
 
 interface Props {
   projectId: string;
@@ -43,12 +44,12 @@ export const ProjectView = ({ projectId }: Props) => {
           minSize={20}
           className="flex flex-col min-h-0"
         >
-          <ErrorBoundary fallback={<p>Error</p>}>
+          <ErrorBoundary fallback={<ErrorPage />}>
             <Suspense fallback={<p>TODO: add loading...</p>}>
               <ProjectHeader projectId={projectId} />
             </Suspense>
           </ErrorBoundary>
-          <ErrorBoundary fallback={<p>Error</p>}>
+          <ErrorBoundary fallback={<ErrorPage />}>
             <Suspense fallback={<p>Loading messages...</p>}>
               <MessagesContainer
                 projectId={projectId}
