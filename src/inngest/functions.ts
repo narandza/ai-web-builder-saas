@@ -5,6 +5,7 @@ import {
   createTool,
   openai,
   type Tool,
+  type Message,
 } from "@inngest/agent-kit";
 import { Sandbox } from "@e2b/code-interpreter";
 
@@ -30,6 +31,32 @@ export const codeAgentFunction = inngest.createFunction(
 
       return sandbox.sandboxId;
     });
+
+    const previousMessages = await step.run(
+      "get-previous-messages",
+      async () => {
+        const formattedMessages: Message[] = [];
+
+        const messages = await prisma.message.findMany({
+          where: {
+            projectId: event.data.projectId,
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        });
+
+        for (const message of messages) {
+          formattedMessages.push({
+            type: "text",
+            role: message.role === "ASSISTANT" ? "assistant" : "user",
+            content: message.content,
+          });
+        }
+
+        return formattedMessages;
+      }
+    );
 
     const codeAgent = createAgent<AgentState>({
       name: "code-agent",
