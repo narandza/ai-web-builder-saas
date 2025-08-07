@@ -11,7 +11,11 @@ import {
 import { Sandbox } from "@e2b/code-interpreter";
 
 import { inngest } from "./client";
-import { getSandbox, lastAssistantTextMessageContent } from "./utils";
+import {
+  getSandbox,
+  lastAssistantTextMessageContent,
+  parseAgentOutput,
+} from "./utils";
 
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
 import { prisma } from "@/lib/db";
@@ -235,34 +239,6 @@ export const codeAgentFunction = inngest.createFunction(
       result.state.data.summary
     );
 
-    const generateFragmentTitle = () => {
-      const output = fragmentTitleOutput[0];
-
-      if (output.type !== "text") {
-        return "Fragment";
-      }
-
-      if (Array.isArray(output.content)) {
-        return output.content.map((txt) => txt).join("");
-      } else {
-        return output.content;
-      }
-    };
-
-    const generateResponse = () => {
-      const output = responseOutput[0];
-
-      if (output.type !== "text") {
-        return "Here you go";
-      }
-
-      if (Array.isArray(output.content)) {
-        return output.content.map((txt) => txt).join("");
-      } else {
-        return output.content;
-      }
-    };
-
     const isError =
       !result.state.data.summary ||
       Object.keys(result.state.data.files || {}).length === 0;
@@ -290,13 +266,13 @@ export const codeAgentFunction = inngest.createFunction(
       return await prisma.message.create({
         data: {
           projectId: event.data.projectId,
-          content: generateResponse(),
+          content: parseAgentOutput(responseOutput),
           role: "ASSISTANT",
           type: "RESULT",
           fragment: {
             create: {
               sandboxUrl: sandboxUrl,
-              title: generateFragmentTitle(),
+              title: parseAgentOutput(fragmentTitleOutput),
               files: result.state.data.files,
             },
           },
