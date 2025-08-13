@@ -51,14 +51,14 @@ export const ProjectHeader = ({ projectId }: Props) => {
           <DropdownMenuItem asChild>
             <Link href="/">
               <ChevronLeftIcon />
-              <span className="">Go to Dashboard</span>
+              <span>Go to Dashboard</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="gap-2">
               <SunMoonIcon className="size-4 text-muted-foreground" />
-              <span className="">Appearance</span>
+              <span>Appearance</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
@@ -67,10 +67,10 @@ export const ProjectHeader = ({ projectId }: Props) => {
                     <span className="">Light</span>
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="dark">
-                    <span className="">Dark</span>
+                    <span>Dark</span>
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="system">
-                    <span className="">System</span>
+                    <span>System</span>
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuSubContent>
