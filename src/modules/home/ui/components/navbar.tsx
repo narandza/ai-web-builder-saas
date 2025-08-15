@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 import { cn } from "@/lib/utils";
 import { useScroll } from "@/hooks/use-scroll";
 import { Button } from "@/components/ui/button";
 import { UserControl } from "@/components/user-control";
+import { Logo } from "@/components/logo";
 
 export const Navbar = () => {
   const isScrolled = useScroll();
@@ -21,7 +21,7 @@ export const Navbar = () => {
     >
       <div className="max-w-5xl mx-auto w-full flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.svg" alt="Vibe" width={24} height={24} />
+          <Logo width={24} height={24} />
           <span className="font-semibold text-lg">Vibe</span>
         </Link>
         <SignedOut>

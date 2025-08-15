@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ChevronDownIcon, ChevronLeftIcon, SunMoonIcon } from "lucide-react";
@@ -19,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/logo";
 
 interface Props {
   projectId: string;
@@ -42,7 +42,7 @@ export const ProjectHeader = ({ projectId }: Props) => {
             size="sm"
             className="focus-visible:ring-0 hover:bg-transparent hober:opacity-75 transition-opacity pl-2!"
           >
-            <Image src="/logo.svg" alt="Vibe" width={18} height={18} />
+            <Logo width={18} height={18} />
             <span className="text-sm font-medium">{project.name}</span>
             <ChevronDownIcon />
           </Button>
