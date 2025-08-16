@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
 import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { CodeIcon, CrownIcon, EyeIcon } from "lucide-react";
+import { CodeIcon, EyeIcon } from "lucide-react";
 
 import {
   ResizableHandle,
@@ -13,7 +12,6 @@ import {
 } from "@/components/ui/resizable";
 import ErrorPage from "@/app/error";
 import { Fragment } from "@/generated/prisma";
-import { Button } from "@/components/ui/button";
 import { UserControl } from "@/components/user-control";
 import { FileExplorer } from "@/components/file-explorer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -21,6 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FragmentWeb } from "../components/fragment-web";
 import { ProjectHeader } from "../components/project-header";
 import { MessagesContainer } from "../components/messages-container";
+import { UpgradeButton } from "../components/upgrade-button";
 
 interface Props {
   projectId: string;
@@ -77,13 +76,7 @@ export const ProjectView = ({ projectId }: Props) => {
                 </TabsTrigger>
               </TabsList>
               <div className="ml-auto flex items-center gap-x-2">
-                {!hasProAccess && (
-                  <Button asChild size="sm" variant="tertiary">
-                    <Link href="/pricing">
-                      <CrownIcon /> Upgrade
-                    </Link>
-                  </Button>
-                )}
+                {!hasProAccess && <UpgradeButton />}
 
                 <UserControl />
               </div>

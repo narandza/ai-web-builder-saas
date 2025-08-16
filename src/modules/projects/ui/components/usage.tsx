@@ -1,10 +1,8 @@
-import Link from "next/link";
 import { useMemo } from "react";
-import { CrownIcon } from "lucide-react";
 import { formatDuration, intervalToDuration } from "date-fns";
 
 import { useAuth } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
+import { UpgradeButton } from "./upgrade-button";
 
 interface Props {
   points: number;
@@ -43,13 +41,7 @@ export const Usage = ({ points, msBeforeNext }: Props) => {
           </p>
           <p className="text-xs text-muted-foreground">Resets in {resetTime}</p>
         </div>
-        {!hasProAccess && (
-          <Button asChild size="sm" variant="tertiary" className="ml-auto">
-            <Link href="/pricing">
-              <CrownIcon /> Upgrade
-            </Link>
-          </Button>
-        )}
+        {!hasProAccess && <UpgradeButton />}
       </div>
     </div>
   );
