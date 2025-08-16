@@ -1,6 +1,7 @@
-import { LOGO_HEIGHT_SMALL, LOGO_WIDTH_SMALL } from "@/app/(home)/constants";
-import { Logo } from "@/components/logo";
 import { useEffect, useState } from "react";
+
+import { Logo } from "@/components/logo";
+import { LOGO_HEIGHT_SMALL, LOGO_WIDTH_SMALL } from "@/app/(home)/constants";
 
 const ShimmerMessages = () => {
   const messages = [

@@ -1,10 +1,11 @@
-import { LOGO_HEIGHT_SMALL, LOGO_WIDTH_SMALL } from "@/app/(home)/constants";
-import { Logo } from "@/components/logo";
-import { Card } from "@/components/ui/card";
-import { Fragment, MessageRole, MessageType } from "@/generated/prisma";
-import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { ChevronRightIcon, Code2Icon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Logo } from "@/components/logo";
+import { Card } from "@/components/ui/card";
+import { LOGO_HEIGHT_SMALL, LOGO_WIDTH_SMALL } from "@/app/(home)/constants";
+import { Fragment, MessageRole, MessageType } from "@/generated/prisma";
 
 interface FragmentCardProps {
   fragment: Fragment | null;

@@ -1,6 +1,7 @@
+import { Logo } from "@/components/logo";
 import { ProjectForm } from "@/modules/home/ui/components/project-form";
 import { ProjectsList } from "@/modules/home/ui/components/projects-list";
-import { Logo } from "@/components/logo";
+
 import { LOGO_HEIGHT_LARGE, LOGO_WIDTH_LARGE } from "./constants";
 
 const Page = () => {

@@ -3,8 +3,9 @@
 import { dark } from "@clerk/themes";
 import { PricingTable } from "@clerk/nextjs";
 
-import { useCurrentTheme } from "@/hooks/use-current-theme";
 import { Logo } from "@/components/logo";
+import { useCurrentTheme } from "@/hooks/use-current-theme";
+
 import { LOGO_HEIGHT_LARGE, LOGO_WIDTH_LARGE } from "../constants";
 
 const Page = () => {

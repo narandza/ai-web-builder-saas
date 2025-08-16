@@ -4,10 +4,10 @@ import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/logo";
 import { useScroll } from "@/hooks/use-scroll";
 import { Button } from "@/components/ui/button";
 import { UserControl } from "@/components/user-control";
-import { Logo } from "@/components/logo";
 import { LOGO_HEIGHT_MEDIUM, LOGO_WIDTH_MEDIUM } from "@/app/(home)/constants";
 
 export const Navbar = () => {
