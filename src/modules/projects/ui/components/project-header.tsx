@@ -19,6 +19,7 @@ import {
 import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
+import { LOGO_HEIGHT_SMALL, LOGO_WIDTH_SMALL } from "@/app/(home)/constants";
 
 interface Props {
   projectId: string;
@@ -42,7 +43,7 @@ export const ProjectHeader = ({ projectId }: Props) => {
             size="sm"
             className="focus-visible:ring-0 hover:bg-transparent hober:opacity-75 transition-opacity pl-2!"
           >
-            <Logo width={18} height={18} />
+            <Logo width={LOGO_WIDTH_SMALL} height={LOGO_HEIGHT_SMALL} />
             <span className="text-sm font-medium">{project.name}</span>
             <ChevronDownIcon />
           </Button>

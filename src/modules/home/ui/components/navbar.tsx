@@ -8,6 +8,7 @@ import { useScroll } from "@/hooks/use-scroll";
 import { Button } from "@/components/ui/button";
 import { UserControl } from "@/components/user-control";
 import { Logo } from "@/components/logo";
+import { LOGO_HEIGHT_MEDIUM, LOGO_WIDTH_MEDIUM } from "@/app/(home)/constants";
 
 export const Navbar = () => {
   const isScrolled = useScroll();
@@ -21,7 +22,7 @@ export const Navbar = () => {
     >
       <div className="max-w-5xl mx-auto w-full flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
-          <Logo width={24} height={24} />
+          <Logo width={LOGO_WIDTH_MEDIUM} height={LOGO_HEIGHT_MEDIUM} />
           <span className="font-semibold text-lg">Vibe</span>
         </Link>
         <SignedOut>

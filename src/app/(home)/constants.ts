@@ -48,3 +48,12 @@ export const PROJECT_TEMPLATES = [
       "Build a Spotify-style music player with a sidebar for playlists, a main area for song details, and playback controls. Use local state for managing playback and song selection. Prioritize layout balance and intuitive control placement for a smooth user experience. Use dark mode.",
   },
 ] as const;
+
+export const LOGO_WIDTH_SMALL = 18;
+export const LOGO_HEIGHT_SMALL = 18;
+
+export const LOGO_WIDTH_MEDIUM = 24;
+export const LOGO_HEIGHT_MEDIUM = 24;
+
+export const LOGO_WIDTH_LARGE = 50;
+export const LOGO_HEIGHT_LARGE = 50;

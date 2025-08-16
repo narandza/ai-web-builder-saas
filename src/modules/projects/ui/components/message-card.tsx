@@ -1,3 +1,4 @@
+import { LOGO_HEIGHT_SMALL, LOGO_WIDTH_SMALL } from "@/app/(home)/constants";
 import { Logo } from "@/components/logo";
 import { Card } from "@/components/ui/card";
 import { Fragment, MessageRole, MessageType } from "@/generated/prisma";
@@ -64,7 +65,11 @@ const AssistantMessage = ({
       )}
     >
       <div className="flex items-center gap-2 pl-2 mb-2">
-        <Logo width={18} height={18} className="shrink-0" />
+        <Logo
+          width={LOGO_WIDTH_SMALL}
+          height={LOGO_HEIGHT_SMALL}
+          className="shrink-0"
+        />
         <span className="text-sm font-medium">Vibe</span>
         <span className="text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
           {format(createdAt, "HH:mm 'on' MMM dd, yyyy")}

@@ -1,3 +1,4 @@
+import { LOGO_HEIGHT_SMALL, LOGO_WIDTH_SMALL } from "@/app/(home)/constants";
 import { Logo } from "@/components/logo";
 import { useEffect, useState } from "react";
 
@@ -37,7 +38,11 @@ export const MessageLoading = () => {
   return (
     <div className="flex flex-col goup px-2 pb-4">
       <div className="flex items-center gap-2 pl-2 mb-2">
-        <Logo width={18} height={18} className="shrink-0" />
+        <Logo
+          width={LOGO_WIDTH_SMALL}
+          height={LOGO_HEIGHT_SMALL}
+          className="shrink-0"
+        />
         <span className="text-sm font-medium">Vibe</span>
       </div>
       <div className="pl-8.5 flex flex-col gap-y-4">
